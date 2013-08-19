@@ -14,10 +14,6 @@ $LOGFILE = "/home/student/" . $username . "/.myTalk/log.txt";
 
 $pid;
 
-
-
-
-
 if(@ARGV[0] eq "--kill")
 {
    killer();
@@ -67,36 +63,6 @@ if(@ARGV[0] eq "--help")
 }
 
 #### main ####
-
-#$in = join(' ', @ARGV);
-#$time=`date +"%H:%M:%S"`;
-#chomp($time);
-
-##write to the master..
-#open($MYFILE,">> $masterLog") or die("Error opening file\n");
-
-#print $MYFILE "[$time] $username: $in\n";
-#close $MYFILE;
-
-## now print to all the users file
-#open($USERFILE, "< $userLog") or die("Error opening file\n");
-#while(<$USERFILE>)
-#{
-#   $st = $_;
-#   $st = chomp($sp); 
-#   open($OTHERFILE, ">> /home/student/".$st.".myTalk/log.txt");
-#   print $OTHERFILE "[$time] $username: $in\n";
-#   close $OTHERFILE;
-#}
-
-#select(undef, undef, undef, 0.3);
-#exit(0);
-
-
-
-
-
-
 $in = join(' ', @ARGV);
 $time=`date +"%H:%M:%S"`;
 chomp($time);
@@ -106,24 +72,11 @@ print $MYFILE "[$time] $username: $in\n";
 close $MYFILE;
 select(undef, undef, undef, 0.5);
 exit(0);
-
 #### end main ####
 
 #### functions ####
-
 sub killer
 {
-#   tie @temparray, 'Tie::File', $userLog or die "cannot open userLog\n";
-#   $l = $temparray;
-#   for($p=0;$p<$l;$p++){
-#      if(@temparray[$p] eq "$username\n" ){
-#         splice(@temparray, $p, 1);    # delete the username from the file
-#      }
-#   }
-
-#   untie @temparray;
-
-
    $tail = getTails();
    if($tail eq ""){
       print "tailTalk is not running\n";
@@ -139,7 +92,6 @@ sub start
 {
    $cmd = shift;
 
-#print "DEBUGG THIS IS CMD: $cmd\n";
    if($cmd eq "w")
    {
       system("~/.myTalk/starter");
@@ -147,13 +99,6 @@ sub start
       system("~/.myTalk/starter nw");
    }
 
-# # handle the userLog file I/O
-#   tie @temparray, 'Tie::File', $userLog or die "cannot open userLog\n";
-#      
-#   push(@temparray,$username);
-#   untie @temparray;
-
-# clean up and be done
    sleep(1);
    system("~/.myTalk/myt start: logging on");
    print "\ntailTalk started\n\n";
@@ -200,22 +145,6 @@ sub version
 
 sub who
 {
-#   open($theUsers, "< ", $userLog) 
-#      or die("Unable to open file ". $userLog);
-#   @allUsers = <$theUsers>;
-#   $l = $allUsers;
-#   if($1 == 0){
-#      print "There are no users on-line\n";
-#   }else{
-#      print "The following users are on-line\n";
-#      for($p=0;p<$l;$p++){
-#         print "@allUsers[$p]\n";
-#      }
-#   }
-
    print "This functionality is currently under development\n";
    print "Check ~/.myTalk/notes.txt for more details\n";
-
 }
-
-
