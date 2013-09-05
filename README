@@ -28,7 +28,7 @@ OPTIONS
                myTalk, then exits
 
          -r
-            prints, to STDOUT the last three lines in the master log file
+              prints, to STDOUT the last three lines in the master log file
 
          --kill
               kills any running listening services that you own, then exits
