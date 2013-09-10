@@ -19,21 +19,8 @@ if($window eq "nw")
 
    if($interactive eq "true")
    {
-      my $childID = fork();
-      
-      if($childID == 0) #Child
-      {
-      
-         exec("~/.myTalk/tailTalk '$LOGFILE' ");
-      
-      }
-      else
-      {
-      
-         return;
-      
-      }
-      
+
+       system("~/.myTalk/tailTalk '$LOGFILE' ");
    }
    else
    {
@@ -50,20 +37,8 @@ elsif($window eq "localnw")
 
    if($interactive eq "true")
    {
-   
-      my $childID = fork();
-      
-      if($childID == 0) #Child
-      {
-      
-         exec("./tailTalk '$LOGFILE' ");
-         
-      }
-      else
-      {
-         return;
-      }
-      
+
+      system("./tailTalk '$LOGFILE' ");
       
    }
    else
