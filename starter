@@ -19,7 +19,21 @@ if($window eq "nw")
 
    if($interactive eq "true")
    {
-      exec("~/.myTalk/tailTalk '$LOGFILE' ");
+      my $childID = fork();
+      
+      if($childID == 0) #Child
+      {
+      
+         exec("~/.myTalk/tailTalk '$LOGFILE' ");
+      
+      }
+      else
+      {
+      
+         return;
+      
+      }
+      
    }
    else
    {
@@ -29,14 +43,28 @@ if($window eq "nw")
 }
 elsif($window eq "local")
 {
-   exec("x-terminal-emulator -e ./tailTalk '$LOGFILE'");
+   system ("x-terminal-emulator -e ./tailTalk '$LOGFILE' &");
 }
 elsif($window eq "localnw")
 {
 
    if($interactive eq "true")
    {
-      exec("./tailTalk '$LOGFILE' ");
+   
+      my $childID = fork();
+      
+      if($childID == 0) #Child
+      {
+      
+         exec("./tailTalk '$LOGFILE' ");
+         
+      }
+      else
+      {
+         return;
+      }
+      
+      
    }
    else
    {
@@ -46,7 +74,7 @@ elsif($window eq "localnw")
 }
 else
 {
-   exec("x-terminal-emulator -e ~/.myTalk/tailTalk '$LOGFILE'");
+   system("x-terminal-emulator -e ~/.myTalk/tailTalk '$LOGFILE' &");
 }
 
 
