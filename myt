@@ -1,8 +1,10 @@
 #!/usr/bin/perl
 $| = 1;
 
+$prompt = ":";
 $username = `whoami`;
 chomp $username;
+$username = $username . $prompt;
 
 $masterLog = "/home/student/jourmeob/.myTalk/masterLog.txt";
 # User log file is not used as of now.
@@ -80,7 +82,7 @@ if(@ARGV[0] eq "--help")
    chomp($time);
 
    open($MYFILE,">> $masterLog") or die("Error opening file\n");
-   print $MYFILE "[$time] $username: $in\n";
+   printf $MYFILE "[%s] %-9s %s\n",$time,$username,$in;
    close $MYFILE;
    select(undef, undef, undef, 0.5);
    exit(0);
@@ -171,7 +173,7 @@ sub help
 
 sub version
 {
-   print "Version 0.2.6\n";
+   print "Version 0.2.7\n";
    print "Check ~/.myTalk/notes.txt for release notes\n";
 }
 
