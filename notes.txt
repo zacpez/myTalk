@@ -71,3 +71,5 @@ v0.2.6 Adds interactive mode (-i) to allow for direct input into a foreground
          Updating via tar file is still supported via 'make updateTar'
          Note. Navigating to /home/student/jourmeob/drop/myTalk, and executing 'make update'
          will install myTalk to ~/.myTalk
+
+v0.2.7 Pretty prints user names so that conversations line up...
